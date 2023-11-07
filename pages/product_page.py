@@ -7,8 +7,8 @@ class ProductPage(BasePage):
     def guest_can_add_product_to_basket(self):
         basket_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         basket_button.click()
-        self.solve_quiz_and_get_code()
-        time.sleep(5)
+        # self.solve_quiz_and_get_code()
+        # time.sleep(5)
         self.should_be_added_to_basket_alert()
         self.should_be_cost_of_basket_alert()
 
@@ -25,4 +25,12 @@ class ProductPage(BasePage):
         price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         assert price.text == messages[2].text, \
             f"The price of the product does not match: {price.text} - {messages[2].text}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGES), \
+           "Success message is presented, but should not be"
+
+    def should_be_dissapeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGES), \
+            "Success message is not disappeared"
 
