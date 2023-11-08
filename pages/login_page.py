@@ -14,10 +14,10 @@ class LoginPage(BasePage):
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
-        assert self.is_element_present(*LoginPageLocators.LOGIN_USERNAME), "Login username is not presented"
-        assert self.is_element_present(*LoginPageLocators.LOGIN_PASSWORD), "Login password is not presented"
-        assert self.is_element_present(*LoginPageLocators.LOGIN_SUBMIT_BUTTON), "Login submit button is not presented"
-        assert self.is_element_present(*LoginPageLocators.LOGIN_RESET_PASSWORD_LINK), "Login reset password link is not presented"
+        assert self.browser.is_element_present(*LoginPageLocators.LOGIN_USERNAME), "Login username is not presented"
+        assert self.browser.is_element_present(*LoginPageLocators.LOGIN_PASSWORD), "Login password is not presented"
+        assert self.browser.is_element_present(*LoginPageLocators.LOGIN_SUBMIT_BUTTON), "Login submit button is not presented"
+        assert self.browser.is_element_present(*LoginPageLocators.LOGIN_RESET_PASSWORD_LINK), "Login reset password link is not presented"
 
     def should_be_register_form(self):
         # реализуйте проверку, что есть форма регистрации на странице
@@ -25,3 +25,14 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD1), "Registration password 1 is not presented"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_PASSWORD2), "Registration password 2 is not presented"
         assert self.is_element_present(*LoginPageLocators.REGISTRATION_SUBMIT_BUTTON), "Registration submit button is not presented"
+
+    def register_new_user(self, email, password):
+        input1 = self.browser.find_element(*LoginPageLocators.REGISTRATION_EMAIL)
+        input1.send_keys(email)
+        input2 = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD1)
+        input2.send_keys(password)
+        input3 = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD2)
+        input3.send_keys(password)
+        button = self.browser.find_element(*LoginPageLocators.REGISTRATION_SUBMIT_BUTTON)
+        button.click()
+
