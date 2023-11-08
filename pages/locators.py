@@ -26,3 +26,8 @@ class ProductPageLocators:
     PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price_color")
     SUCCESS_MESSAGES = (By.CSS_SELECTOR, ".alertinner strong")
 
+
+class BasketPageLocators:
+    BASKET_BUTTON = (By.CSS_SELECTOR, "span.btn-group > a.btn.btn-default")
+    EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")
+    BASKET_PRODUCT = (By.CSS_SELECTOR, "div.basket-items")
